@@ -1,0 +1,12 @@
+---
+# vars file for karmada
+karmada_os: '{{ ansible_system | lower }}'
+karmada_arch: '{{ karmada_arch_map[ansible_architecture] }}'
+karmada_platform: '{{ karmada_os }}-{{ karmada_arch }}'
+karmada_name: karmadactl-{{ karmada_ver }}-{{ karmada_platform }}
+karmada_tmp_archive: '{{ karmada_tmp_dir | default("/tmp") }}/{{ karmada_name }}.tgz'
+karmada_url: '{{ karmada_mirror }}/v{{ karmada_ver }}/karmadactl-{{ karmada_platform }}.tgz'
+karmada_checksum: '{{ karmada_checksums[karmada_ver][karmada_platform] }}'
+karmada_install_dir: '{{ karmada_parent_install_dir }}/{{ karmada_name }}'
+karmada_exe: '{{ karmada_install_dir }}/karmadactl'
+karmada_link: '{{ karmada_parent_install_dir }}/bin/karmadactl'

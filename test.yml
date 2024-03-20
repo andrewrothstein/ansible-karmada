@@ -1,0 +1,14 @@
+---
+- name: Testing andrewrothstein.karmada role
+  hosts: all
+  tasks:
+    - name: Installing andrewrothstein.karmada
+      ansible.builtin.include_role:
+        name: '{{ playbook_dir }}'
+    - name: Executing 'karmadactl version'
+      ansible.builtin.command: karmadactl version
+      changed_when: false
+      register: 'karmada_test_output'
+    - name: Output from 'karmadactl version'
+      ansible.builtin.debug:
+        msg: '{{ karmada_test_output.stdout }}'

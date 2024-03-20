@@ -1,0 +1,56 @@
+---
+- name: Install unarchivedeps
+  ansible.builtin.include_role:
+    name: andrewrothstein.unarchivedeps
+- name: Resolve platform specific vars
+  ansible.builtin.include_vars: '{{ item }}'
+  with_first_found:
+    - files:
+        - '{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml'
+        - '{{ ansible_distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+      skip: true
+      paths:
+        - '{{ role_path }}/vars'
+- name: Look for install at {{ karmada_exe }}
+  ansible.builtin.stat:
+    path: '{{ karmada_exe }}'
+  register: karmada_binary
+- when: not karmada_binary.stat.exists
+  block:
+    - name: Downloading {{ karmada_url }} to {{ karmada_tmp_archive }}
+      become: true
+      become_user: root
+      ansible.builtin.get_url:
+        url: '{{ karmada_url }}'
+        dest: '{{ karmada_tmp_archive }}'
+        mode: '644'
+        checksum: '{{ karmada_checksum }}'
+    - name: Mkdir {{ karmada_install_dir }}
+      become: true
+      become_user: root
+      ansible.builtin.file:
+        path: '{{ karmada_install_dir }}'
+        state: directory
+    - name: Unarchive {{ karmada_tmp_archive }} to {{ karmada_install_dir }}
+      become: true
+      become_user: root
+      ansible.builtin.unarchive:
+        remote_src: true
+        src: '{{ karmada_tmp_archive }}'
+        dest: '{{ karmada_install_dir }}'
+        creates: '{{ karmada_exe }}'
+  always:
+    - name: Rm {{ karmada_tmp_archive }}
+      become: true
+      become_user: root
+      ansible.builtin.file:
+        path: '{{ karmada_tmp_archive }}'
+        state: absent
+- name: Linking {{ karmada_link }} to {{ karmada_exe }}
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    src: '{{ karmada_exe }}'
+    dest: '{{ karmada_link }}'
+    state: link

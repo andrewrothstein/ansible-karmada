@@ -1,0 +1,19 @@
+---
+# defaults file for karmada
+karmada_ver: 1.9.0
+karmada_arch_map:
+  aarch64: arm64
+  arm64: arm64
+  x86_64: amd64
+karmada_parent_install_dir: /usr/local
+karmada_mirror: https://github.com/karmada-io/karmada/releases/download
+karmada_checksums:
+  '1.9.0':
+    # https://github.com/karmada-io/karmada/releases/download/v1.9.0/karmadactl-darwin-amd64.tgz.sha256
+    darwin-amd64: sha256:8850d23c3f0e95a9193f5d55060737795d9c9d70ae8937f99f758b443946e383
+    # https://github.com/karmada-io/karmada/releases/download/v1.9.0/karmadactl-darwin-arm64.tgz.sha256
+    darwin-arm64: sha256:2636943b59954b39115f0d4457e7ae74c98c9e3b0b3cbb1e6962d7089d31b23c
+    # https://github.com/karmada-io/karmada/releases/download/v1.9.0/karmadactl-linux-amd64.tgz.sha256
+    linux-amd64: sha256:7cfa9262d939a2a86af265de4ad14e2c17948b057cf2cb705600fbace5fd00a3
+    # https://github.com/karmada-io/karmada/releases/download/v1.9.0/karmadactl-linux-arm64.tgz.sha256
+    linux-arm64: sha256:7a466202d985589f4cdad292dbb9e04995e56f0a736a2d1ebeeacd02cb8dfefb
