@@ -13,7 +13,8 @@
   ansible.builtin.stat:
     path: '{{ karmada_exe }}'
   register: karmada_binary
-- when: not karmada_binary.stat.exists
+- name: Downloading and installing karmadactl
+  when: not karmada_binary.stat.exists
   block:
     - name: Downloading {{ karmada_url }} to {{ karmada_tmp_archive }}
       become: true
@@ -29,6 +30,7 @@
       ansible.builtin.file:
         path: '{{ karmada_install_dir }}'
         state: directory
+        mode: '755'
     - name: Install unarchivedeps
       ansible.builtin.include_role:
         name: andrewrothstein.unarchivedeps
