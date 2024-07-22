@@ -1,6 +1,6 @@
 ---
 # defaults file for karmada
-karmada_ver: 1.10.2
+karmada_ver: 1.10.3
 karmada_arch_map:
   aarch64: arm64
   arm64: arm64
@@ -26,3 +26,12 @@ karmada_checksums:
     linux-amd64: sha256:a4e322d33372574d859eac612968bf8f84bba76d208776b866a75a2366e57acb
     # https://github.com/karmada-io/karmada/releases/download/v1.10.2/karmadactl-linux-arm64.tgz.sha256
     linux-arm64: sha256:3cac1ef87ecaf7b90ed4946306d3b3190f2d67864f4359b42e3380b1ca0d2355
+  '1.10.3':
+    # https://github.com/karmada-io/karmada/releases/download/v1.10.3/karmadactl-darwin-amd64.tgz.sha256
+    darwin-amd64: sha256:d8f7f39255146afd266fc35fdb81da8cbcdf94de8308d022aee7644ecf1450dd
+    # https://github.com/karmada-io/karmada/releases/download/v1.10.3/karmadactl-darwin-arm64.tgz.sha256
+    darwin-arm64: sha256:ef360eff450d523a532e1a54d2bfe6fbbc986dba71cef8da209cf85c0b81e4cc
+    # https://github.com/karmada-io/karmada/releases/download/v1.10.3/karmadactl-linux-amd64.tgz.sha256
+    linux-amd64: sha256:6b8b8cb6e8c65813085074753953319042be0256550dfa63e8fa265dbcdd2290
+    # https://github.com/karmada-io/karmada/releases/download/v1.10.3/karmadactl-linux-arm64.tgz.sha256
+    linux-arm64: sha256:4ab2d35b70c4e99032873357fb0197c7ad75f6212975933d348b24eb64a529c8

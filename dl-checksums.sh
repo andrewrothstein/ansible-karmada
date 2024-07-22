@@ -27,4 +27,4 @@ dl_ver() {
     dl $ver linux arm64
 }
 
-dl_ver ${1:-1.10.2}
+dl_ver ${1:-1.10.3}
